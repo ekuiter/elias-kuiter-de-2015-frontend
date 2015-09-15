@@ -1,0 +1,66 @@
+@import "variables";
+@import "mixins";
+
+nav .items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+
+  .item {
+    @mixin item($itemFontSize, $smallFont, $mediumFont, $largeFont, $itemMargin, $smallItemHeight) {
+      @include transitions((
+          hoverTransition(background-color, $from: $itemColor, $to: $itemHoverColor),
+          font-size "&.large" $itemFontSize "&.large:hover" $largeFont $hoverDuration,
+          font-size "&.small" $smallFont "&.small:hover" $mediumFont $hoverDuration,
+          color "&:hover a" $itemColor $hoverDuration,
+          border-radius "&.small" 0 $initDuration,
+          height "&.small" $smallItemHeight $initDuration,
+          width $initDuration,
+          margin $initDuration,
+      ));
+      margin: $itemMargin;
+
+      &.active {
+        background-color: $itemHoverColor;
+        font-size: $mediumFont;
+
+        a {
+          color: $itemColor;
+
+          h2 {
+            border-bottom-color: $itemHoverColor;
+          }
+        }
+
+        &:hover a h2 {
+          border-bottom-color: $itemColor;
+        }
+      }
+    }
+
+    $smallFont: 0.8em;
+    $mediumFont: 1em;
+    $largeFont: 1.2em;
+
+    @include item($itemFontSize, $smallFont, $mediumFont, $largeFont, $itemMargin, $smallItemHeight);
+
+    @include media($breakSmall) {
+      @include item($itemFontSize * $smallItemFactor, $smallFont * $smallItemFactor,
+          $mediumFont * $smallItemFactor, $largeFont * $smallItemFactor,
+          $itemMargin * $smallItemFactor, $smallItemHeight * $smallItemFactor);
+    }
+
+    a {
+      @include centerChild;
+      width: 100%;
+      height: 100%;
+      transition: color $hoverDuration;
+
+      h2 {
+        margin: 10px;
+        border-bottom: 2px solid $itemColor;
+      }
+    }
+  }
+}

@@ -1,0 +1,99 @@
+@import "variables";
+
+// layout
+
+@mixin square($dimension) {
+  width: $dimension;
+  height: $dimension;
+}
+
+@mixin circle($dimension) {
+  @include square($dimension);
+  border-radius: 50%;
+}
+
+@mixin triangle($dimension, $color) {
+  width: 0;
+  height: 0;
+  border-left: $dimension solid transparent;
+  border-right: $dimension solid transparent;
+  border-top: $dimension solid $color;
+  font-size: 0;
+  line-height: 0;
+}
+
+@mixin centerChild {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin inCorner($directions, $padding) {
+  position: fixed;
+  #{nth($directions, 1)}: $padding;
+  #{nth($directions, 2)}: $padding;
+}
+
+@mixin media($break) {
+  @media (max-width: $breakSmall) {
+    @content;
+  }
+}
+
+// animations (only one animation per element allowed)
+
+@mixin rotateAnimation($from, $to, $duration) {
+  @keyframes rotate {
+    from { transform: rotate($from); }
+    to { transform: rotate($to); }
+  }
+
+  animation-name: rotate;
+  animation-duration: $duration;
+}
+
+@mixin fadeInAnimation($duration) {
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  animation-name: fadeIn;
+  animation-duration: $duration;
+}
+
+@mixin transitions($list) {
+  $transitions: ();
+  @each $item in $list {
+    $property: null; $fromSel: null; $from: null; $toSel: null; $to: null; $duration: null;
+    @if length($item) == 6 {
+      $property: nth($item, 1); $fromSel: nth($item, 2); $from: nth($item, 3); $toSel: nth($item, 4);
+      $to: nth($item, 5); $duration: nth($item, 6);
+    } @else if length($item) == 4 {
+      $property: nth($item, 1); $toSel: nth($item, 2); $to: nth($item, 3); $duration: nth($item, 4);
+    } @else if length($item) == 2 {
+      $property: nth($item, 1); $duration: nth($item, 2);
+    }
+    $transition: unquote("#{$property} #{$duration}");
+    $transitions: append($transitions, $transition, comma);
+    @if $fromSel and $from {
+      #{$fromSel} {
+        #{$property}: $from;
+      }
+    }
+    @if $toSel and $to {
+      #{$toSel} {
+        #{$property}: $to;
+      }
+    }
+  }
+  transition: $transitions;
+}
+
+@function hoverTransition($property, $to, $duration: $hoverDuration, $from: null) {
+  @if $from {
+    @return $property "&" $from "&:hover" $to $duration;
+  } @else {
+    @return $property "&:hover" $to $duration;
+  }
+}

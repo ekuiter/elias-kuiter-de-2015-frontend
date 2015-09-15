@@ -1,0 +1,23 @@
+<template name="categoryView">
+  {{#if hasCategorySlug and Template.subscriptionsReady}}
+    {{> separator}}
+    <div class="projects">
+      {{#each category.projects}}
+        <div class="item {{size}} {{active}}">
+          <a href="/{{categorySlug}}/{{slug}}" class="no-underline">
+            <h2>{{title}}</h2>
+          </a>
+        </div>
+      {{/each}}
+    </div>
+    {{#unless isCategoryRoute}}
+      {{> separator}}
+    {{/unless}}
+  {{/if}}
+</template>
+
+<template name="separator">
+  <div class="separator">
+    <div></div>
+  </div>
+</template>

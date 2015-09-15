@@ -1,0 +1,17 @@
+@import "mixins";
+@import "items";
+
+nav .projects {
+  @extend .items;
+
+  .item {
+    @include fadeInAnimation($initDuration);
+    min-width: $itemSize;
+    height: $itemSize;
+
+    @include media($breakSmall) {
+      min-width: $itemSize * $smallItemFactor;
+      height: $itemSize * $smallItemFactor;
+    }
+  }
+}

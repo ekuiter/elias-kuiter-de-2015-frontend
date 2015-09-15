@@ -1,0 +1,56 @@
+@import "variables";
+@import "mixins";
+
+header {
+  margin-top: 25px;
+
+  .heading {
+    @include centerChild;
+
+    a {
+      @include transitions((
+          hoverTransition(background-color, $to: $itemColor, $duration: $initDuration),
+      ));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0 10px;
+      padding: 10px;
+      border-radius: 10px;
+
+      .logo {
+        @include square(70px);
+        margin-right: 10px;
+        .accent { transition: fill $initDuration; fill: $accColor; }
+        .fg { transition: fill $initDuration; fill: $fgColor; }
+        .edge { transition: stroke $initDuration; stroke: $fgColor; }
+      }
+
+      h1 {
+        margin: 15px 15px 12px 15px;
+        font-size: 35px;
+        text-align: center;
+        border-bottom: 2px solid $bgColor;
+        transition: border-bottom-color $initDuration;
+      }
+
+      &:hover {
+        .logo {
+          .accent { fill: $fgColor; }
+          .fg { fill: $accColor; }
+          .edge { stroke: $accColor; }
+        }
+
+        h1 {
+          border-bottom-color: $accColor;
+        }
+      }
+    }
+  }
+
+  .tagline {
+    margin: 25px;
+    font-size: 1.2em;
+    text-align: center;
+  }
+}

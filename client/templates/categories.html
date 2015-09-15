@@ -1,0 +1,17 @@
+<template name="categoriesView">
+  {{#if Template.subscriptionsReady}}
+    <div class="categories">
+      {{#each categories}}
+        <div class="item {{size}} {{animatable}} {{active}}">
+          {{> category}}
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</template>
+
+<template name="category">
+  <a href="/{{slug}}" class="no-underline">
+    <h2>{{title}}</h2>
+  </a>
+</template>

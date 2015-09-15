@@ -1,0 +1,41 @@
+@import "variables";
+@import "mixins";
+
+body {
+  @include fadeInAnimation($initDuration);
+  background-color: $bgColor;
+  color: $fgColor;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+a {
+  color: $accColor;
+  text-decoration: none;
+
+  &:not(.no-underline) {
+    &:hover, &:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+footer {
+  @include inCorner(bottom right, 7px);
+  padding: 8px;
+  background-color: $bgColor;
+}
+
+a.admin {
+  @include inCorner(top right, 15px);
+  color: $fgColor !important;
+  opacity: 0.2;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    opacity: 0.5;
+  }
+}
+
+.spinner-container {
+  @include fadeInAnimation($initDuration);
+}

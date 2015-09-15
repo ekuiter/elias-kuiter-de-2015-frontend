@@ -1,0 +1,22 @@
+@import "variables";
+@import "mixins";
+
+.separator {
+  @include centerChild;
+  @include fadeInAnimation($initDuration);
+  margin: 8px;
+
+  div {
+    $triangleSize: 25px;
+    @include triangle($triangleSize, $itemColor);
+    @include transitions((
+        border-left-width $initDuration,
+        border-right-width $initDuration,
+        border-top-width $initDuration,
+    ));
+
+    @include media($breakSmall) {
+      @include triangle($triangleSize * $smallItemFactor, $itemColor);
+    }
+  }
+}

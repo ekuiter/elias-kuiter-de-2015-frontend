@@ -1,0 +1,25 @@
+@import "mixins";
+@import "items";
+
+nav .categories {
+  @extend .items;
+  @include fadeInAnimation($initDuration);
+
+  .item {
+    @include circle($itemSize);
+
+    @include media($breakSmall) {
+      @include circle($itemSize * $smallItemFactor);
+    }
+
+    &.large {
+      &.animatable {
+        @include rotateAnimation(-30deg, 0, $initDuration);
+      }
+
+      a {
+        @include circle(100%);
+      }
+    }
+  }
+}

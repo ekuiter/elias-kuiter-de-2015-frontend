@@ -1,0 +1,42 @@
+<head>
+  <title>Elias Kuiter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="shortcut icon" href="http://elias-kuiter.de/i/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="http://elias-kuiter.de/i/favicon.ico" type="image/x-icon" />
+</head>
+
+<template name="applicationLayout">
+  <header>
+    <div class="heading">
+      <a href="/" class="no-underline">
+        {{> logo}}
+        <h1>Elias Kuiter</h1>
+      </a>
+    </div>
+
+    <div class="tagline">
+      Hi, I'm a web and app developer. Here are some of my works.
+    </div>
+
+    <a class="admin" href="http://admin.elias-kuiter.de">π</a>
+  </header>
+
+  <nav>
+    {{> categoriesView}}
+    {{> categoryView}}
+  </nav>
+
+  <main>
+    {{> yield}}
+  </main>
+
+  <footer>
+    &copy; {{year}} Elias Kuiter |
+    <a href="/imprint">Imprint</a> |
+    <a href="/privacy">Privacy</a>
+  </footer>
+</template>
+
+<template name="loading">
+  {{> spinner}}
+</template>

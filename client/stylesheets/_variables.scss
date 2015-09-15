@@ -1,0 +1,21 @@
+// colors
+
+$bgColor: #222;
+$fgColor: #eee;
+$accColor: #ffba3b;
+$itemColor: lighten($bgColor, 8%);
+$itemHoverColor: $accColor;
+
+// layout
+
+$breakSmall: 768px;
+$itemSize: 200px;
+$itemFontSize: 16px;
+$smallItemFactor: 0.75;
+$itemMargin: 10px;
+$smallItemHeight: 50px;
+
+//animations
+
+$initDuration: 300ms;
+$hoverDuration: 100ms;
