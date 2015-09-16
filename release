@@ -1,0 +1,10 @@
+#!/bin/bash
+meteor build tarball
+cp tarball/*.tar.gz .openshift/
+rm -rf tarball
+cd .openshift/
+tar -xvf *.tar.gz -s '/^bundle//'
+rm *.tar.gz
+git add -A
+git commit -m release
+git push openshift master
