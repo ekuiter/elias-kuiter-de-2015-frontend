@@ -28,8 +28,8 @@
   align-items: center;
 }
 
-@mixin inCorner($directions, $padding) {
-  position: fixed;
+@mixin inCorner($directions, $padding, $position: fixed) {
+  position: $position;
   #{nth($directions, 1)}: $padding;
   #{nth($directions, 2)}: $padding;
 }

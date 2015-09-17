@@ -5,9 +5,7 @@
       <div class="projects">
         {{#each category.projects}}
           <div class="item {{size}} {{active}}">
-            <a href="/{{categorySlug}}/{{slug}}" class="no-underline">
-              <h2>{{title}}</h2>
-            </a>
+            {{> project}}
           </div>
         {{/each}}
       </div>
@@ -18,6 +16,13 @@
       {{> loading}}
     {{/if}}
   {{/if}}
+</template>
+
+<template name="project">
+  <a href="/{{categorySlug}}/{{slug}}" class="no-underline">
+    <img src="{{imageUrl}}" alt="{{title}}" />
+    <h2>{{title}}</h2>
+  </a>
 </template>
 
 <template name="separator">

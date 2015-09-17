@@ -8,18 +8,31 @@ nav .items {
   text-align: center;
 
   .item {
-    @mixin item($itemFontSize, $smallFont, $mediumFont, $largeFont, $itemMargin, $smallItemHeight) {
+    @mixin item($itemFontSize, $smallFont, $mediumFont, $largeFont, $itemMargin, $smallItemHeight, $boxShadow) {
       @include transitions((
           hoverTransition(background-color, $from: $itemColor, $to: $itemHoverColor),
           font-size "&.large" $itemFontSize "&.large:hover" $largeFont $hoverDuration,
           font-size "&.small" $smallFont "&.small:hover" $mediumFont $hoverDuration,
           color "&:hover a" $itemColor $hoverDuration,
+          box-shadow "&.large:hover" (0 0 0 $boxShadow $accColor) $hoverDuration,
           border-radius "&.small" 0 $initDuration,
           height "&.small" $smallItemHeight $initDuration,
           width $initDuration,
           margin $initDuration,
       ));
       margin: $itemMargin;
+
+      a {
+        @include centerChild;
+        width: 100%;
+        height: 100%;
+        transition: color $hoverDuration;
+
+        h2 {
+          margin: 10px;
+          border-bottom: 2px solid $itemColor;
+        }
+      }
 
       &.active {
         background-color: $itemHoverColor;
@@ -43,24 +56,12 @@ nav .items {
     $mediumFont: 1em;
     $largeFont: 1.2em;
 
-    @include item($itemFontSize, $smallFont, $mediumFont, $largeFont, $itemMargin, $smallItemHeight);
+    @include item($itemFontSize, $smallFont, $mediumFont, $largeFont, $itemMargin, $smallItemHeight, 5px);
 
     @include media($breakSmall) {
       @include item($itemFontSize * $smallItemFactor, $smallFont * $smallItemFactor,
           $mediumFont * $smallItemFactor, $largeFont * $smallItemFactor,
-          $itemMargin * $smallItemFactor, $smallItemHeight * $smallItemFactor);
-    }
-
-    a {
-      @include centerChild;
-      width: 100%;
-      height: 100%;
-      transition: color $hoverDuration;
-
-      h2 {
-        margin: 10px;
-        border-bottom: 2px solid $itemColor;
-      }
+          $itemMargin * $smallItemFactor, $smallItemHeight * $smallItemFactor, 3px);
     }
   }
 }

@@ -9,6 +9,27 @@ Template.categoryView.onCreated(function() {
     if (self.subscriptionsReady() && App.helpers.getCategorySlug() && !App.helpers.getCategory())
       Router.go("notFound");
   });
+  self.clearTimeout = function() {
+    if (self.timeout) {
+      Meteor.clearTimeout(self.timeout);
+      self.timeout = null;
+    }
+  };
+  self.autorun(function() {
+    self.clearTimeout();
+    if (App.helpers.isRoute("category")) {
+      if (self.subscriptionsReady()) {
+        self.timeout = Meteor.setTimeout(function() {
+          self.$(".projects .item img").addClass("visible");
+        }, App.initDuration);
+      }
+    } else if (self.view._domrange)
+      self.$(".projects .item img").removeClass("visible");
+  });
+});
+
+Template.categoryView.onDestroyed(function() {
+  this.clearTimeout();
 });
 
 Template.categoryView.helpers({

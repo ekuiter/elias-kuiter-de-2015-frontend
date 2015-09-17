@@ -5,7 +5,7 @@ Template.categoriesView.onCreated(function() {
 
 Template.categoriesView.helpers({
   categories: function() {
-    return Categories.find();
+    return Categories.find({}, { sort: { order: 1 } });
   },
   size: function() {
     if (App.helpers.isRoute("home"))

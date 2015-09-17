@@ -23,10 +23,17 @@ footer {
   @include inCorner(bottom right, 7px);
   padding: 8px;
   background-color: $bgColor;
+  border-radius: 8px;
+
+  @include media($breakSmall) {
+    position: static;
+    text-align: right;
+    margin: 10px;
+  }
 }
 
 a.admin {
-  @include inCorner(top right, 15px);
+  @include inCorner(top right, 15px, $position: absolute);
   color: $fgColor !important;
   opacity: 0.2;
 

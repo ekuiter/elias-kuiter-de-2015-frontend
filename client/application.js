@@ -1,4 +1,5 @@
 App = {
+  initDuration: 300,
   helpers: { // may only be called from Template helpers / onCreated callbacks
     isRoute: function(routeName) {
       return Router.current().route.getName() === routeName;

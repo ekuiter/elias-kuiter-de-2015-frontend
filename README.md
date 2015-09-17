@@ -19,6 +19,7 @@ To deploy on Heroku, run:
 As for OpenShift:
 
     ./release
+    rhc app restart www # if necessary
 
 Set the following environment variables:
 

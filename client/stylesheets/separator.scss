@@ -4,10 +4,10 @@
 .separator {
   @include centerChild;
   @include fadeInAnimation($initDuration);
-  margin: 8px;
+  margin: 6px;
 
   div {
-    $triangleSize: 25px;
+    $triangleSize: 20px;
     @include triangle($triangleSize, $itemColor);
     @include transitions((
         border-left-width $initDuration,
