@@ -38,4 +38,6 @@ a.admin {
 
 .spinner-container {
   @include fadeInAnimation($initDuration);
+  position: relative;
+  margin-top: 50px;
 }

@@ -1,7 +1,7 @@
 <template name="categoryView">
-  {{#if Template.subscriptionsReady}}
-    {{#if hasCategorySlug}}
-      {{> separator}}
+  {{#if hasCategorySlug}}
+    {{> separator}}
+    {{#if Template.subscriptionsReady}}
       <div class="projects">
         {{#each category.projects}}
           <div class="item {{size}} {{active}}">
@@ -14,6 +14,8 @@
       {{#unless isCategoryRoute}}
         {{> separator}}
       {{/unless}}
+    {{else}}
+      {{> loading}}
     {{/if}}
   {{/if}}
 </template>
