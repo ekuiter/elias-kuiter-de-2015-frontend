@@ -6,8 +6,9 @@ Meteor.startup(function() {
     var endHour = parseInt(hours[1]);
 
     WebApp.connectHandlers.use(function(req, res, next) {
-      var currentHour = new Date().getHours();
+      var currentHour = Timezone.getHour();
       if (currentHour >= startHour && currentHour <= endHour) {
+        console.log("Redirecting to " + redirectUrl + ", currentHour (" + currentHour + ") is in TIME_FRAME=" + timeFrame);
         res.writeHead(302, { Location: redirectUrl + req.url });
         res.end();
       } else
