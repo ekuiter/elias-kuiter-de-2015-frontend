@@ -8,7 +8,7 @@ nav .categories {
   .item {
     @include circle($itemSize);
 
-    @include media($breakSmall) {
+    @include media($breakMedium) {
       @include circle($itemSize * $smallItemFactor);
     }
 

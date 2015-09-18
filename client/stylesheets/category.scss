@@ -9,7 +9,7 @@ nav .projects {
     min-width: $itemSize;
     height: $itemSize;
 
-    @include media($breakSmall) {
+    @include media($breakMedium) {
       min-width: $itemSize * $smallItemFactor;
       height: $itemSize * $smallItemFactor;
     }
@@ -30,7 +30,7 @@ nav .projects {
           opacity: 1;
         }
 
-        @include media($breakSmall) {
+        @include media($breakMedium) {
           height: 65%;
         }
       }

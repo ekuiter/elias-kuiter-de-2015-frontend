@@ -2,13 +2,13 @@
   {{#if hasCategorySlug}}
     {{> separator}}
     {{#if Template.subscriptionsReady}}
-      <div class="projects">
+      <ul class="projects">
         {{#each category.projects}}
-          <div class="item {{size}} {{active}}">
+          <li class="item {{size}} {{active}}">
             {{> project}}
-          </div>
+          </li>
         {{/each}}
-      </div>
+      </ul>
       {{#unless isCategoryRoute}}
         {{> separator}}
       {{/unless}}

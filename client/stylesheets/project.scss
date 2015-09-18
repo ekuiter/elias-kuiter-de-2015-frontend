@@ -1,0 +1,129 @@
+@import "variables";
+@import "mixins";
+
+.project-container {
+  @include fadeInAnimation($initDuration);
+  @include centerChild;
+
+  .project {
+    width: 80%;
+    background-color: $itemColor;
+    margin: $itemMargin;
+    padding: 10px;
+
+    @include media($breakMedium) {
+      width: 100%;
+      margin: $itemMargin 0 0 0;
+    }
+
+    .details {
+      h2.show-on-small {
+        text-align: center;
+        margin: 0.4em 0 0.6em 0;
+      }
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+        font-weight: bold;
+
+        @include media($breakMedium) {
+          justify-content: center;
+        }
+
+        li {
+          @mixin item($itemSize, $fontSize, $largeFontSize, $itemMargin, $smallItemHeight, $boxShadow) {
+            min-width: $itemSize;
+            margin: $itemMargin;
+
+            &:first-child { margin-left: 0; }
+            &:last-child { margin-right: 0; }
+
+            a {
+              @include centerChild;
+              @include transitions((
+                  hoverTransition(background-color, $from: $subItemColor, $to: $subItemHoverColor),
+                  hoverTransition(font-size, $from: $fontSize, $to: $largeFontSize),
+                  hoverTransition(color, $to: $subItemColor),
+                  width $initDuration,
+                  margin $initDuration,
+              ));
+              height: $smallItemHeight;
+
+              span {
+                margin: 10px;
+                border-bottom: 2px solid $subItemColor;
+              }
+            }
+          }
+
+          $fontSize: 20px;
+          $largeFontSize: $fontSize * 1.2;
+
+          @include item($itemSize, $fontSize, $largeFontSize, $itemMargin, $smallItemHeight, 5px);
+
+          @include media($breakMedium) {
+            @include item($itemSize * $smallItemFactor, $fontSize * $smallItemFactor,
+                $largeFontSize * $smallItemFactor, $itemMargin * $smallItemFactor, $smallItemHeight * $smallItemFactor, 3px);
+          }
+        }
+      }
+    }
+
+    .images {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      float: left;
+      list-style: none;
+      padding: 0;
+
+      &.columns-1 {
+        width: 25%;
+        margin: 10px 20px 5px 5px;
+      }
+
+      &.columns-2 {
+        width: 50%;
+        margin: 10px 10px 5px 0;
+
+        li { width: 46%; }
+      }
+
+      &.columns-1, &.columns-2 {
+        @include media($breakMedium) {
+          float: none;
+          width: auto;
+          margin: 10px;
+
+          li { width: 30%; }
+        }
+
+        @include media($breakSmall) {
+          li { width: 46%; }
+        }
+      }
+
+      li a {
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        img {
+          width: 100%;
+          transition: border-color $hoverDuration, box-shadow $hoverDuration;
+          border: 2px solid $itemColor;
+        }
+
+        &:hover img {
+          border-color: $accColor;
+          box-shadow: 0 0 0 3px $accColor;
+        }
+      }
+    }
+  }
+}

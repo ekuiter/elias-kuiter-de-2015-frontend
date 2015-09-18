@@ -35,7 +35,7 @@
 }
 
 @mixin media($break) {
-  @media (max-width: $breakSmall) {
+  @media (max-width: $break) {
     @content;
   }
 }

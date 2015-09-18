@@ -5,14 +5,17 @@ $fgColor: #eee;
 $accColor: #ffba3b;
 $itemColor: lighten($bgColor, 8%);
 $itemHoverColor: $accColor;
+$subItemColor: lighten($itemColor, 4%);
+$subItemHoverColor: $accColor;
 
 // layout
 
-$breakSmall: 768px;
+$breakMedium: 768px;
+$breakSmall: 480px;
 $itemSize: 200px;
 $itemFontSize: 16px;
 $smallItemFactor: 0.75;
-$itemMargin: 10px;
+$itemMargin: 8px;
 $smallItemHeight: 50px;
 
 //animations

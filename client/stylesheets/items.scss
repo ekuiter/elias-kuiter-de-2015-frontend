@@ -6,6 +6,9 @@ nav .items {
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 
   .item {
     @mixin item($itemFontSize, $smallFont, $mediumFont, $largeFont, $itemMargin, $smallItemHeight, $boxShadow) {
@@ -58,7 +61,7 @@ nav .items {
 
     @include item($itemFontSize, $smallFont, $mediumFont, $largeFont, $itemMargin, $smallItemHeight, 5px);
 
-    @include media($breakSmall) {
+    @include media($breakMedium) {
       @include item($itemFontSize * $smallItemFactor, $smallFont * $smallItemFactor,
           $mediumFont * $smallItemFactor, $largeFont * $smallItemFactor,
           $itemMargin * $smallItemFactor, $smallItemHeight * $smallItemFactor, 3px);

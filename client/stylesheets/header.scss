@@ -2,7 +2,7 @@
 @import "mixins";
 
 header {
-  margin-top: 25px;
+  margin-top: 20px;
 
   .heading {
     @include centerChild;
@@ -49,7 +49,7 @@ header {
   }
 
   .tagline {
-    margin: 25px;
+    margin: 15px;
     font-size: 1.2em;
     text-align: center;
   }

@@ -1,12 +1,12 @@
 <template name="categoriesView">
   {{#if Template.subscriptionsReady}}
-    <div class="categories">
+    <ul class="categories">
       {{#each categories}}
-        <div class="item {{size}} {{animatable}} {{active}}">
+        <li class="item {{size}} {{animatable}} {{active}}">
           {{> category}}
-        </div>
+        </li>
       {{/each}}
-    </div>
+    </ul>
   {{/if}}
 </template>
 
