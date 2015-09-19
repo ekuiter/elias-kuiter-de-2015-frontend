@@ -5,18 +5,29 @@ $fgColor: #eee;
 $accColor: #ffba3b;
 $itemColor: lighten($bgColor, 8%);
 $itemHoverColor: $accColor;
-$subItemColor: lighten($itemColor, 4%);
-$subItemHoverColor: $accColor;
+$actionColor: lighten($itemColor, 4%);
+$actionHoverColor: $accColor;
 
 // layout
 
 $breakMedium: 768px;
 $breakSmall: 480px;
+
+// categories / projects
+
 $itemSize: 200px;
 $itemFontSize: 16px;
-$smallItemFactor: 0.75;
 $itemMargin: 8px;
 $smallItemHeight: 50px;
+$smallItemFactor: 0.75;
+
+// project actions
+
+$actionWidth: 225px;
+$actionFontSize: 18px;
+$actionMargin: 6px;
+$smallActionHeight: 40px;
+$smallActionFactor: 0.9;
 
 //animations
 

@@ -16,58 +16,64 @@
       margin: $itemMargin 0 0 0;
     }
 
-    .details {
-      h2.show-on-small {
-        text-align: center;
-        margin: 0.4em 0 0.6em 0;
+    h2.show-on-small {
+      text-align: center;
+      margin: 0.4em 0 0.6em 0;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      padding: 0;
+      font-weight: bold;
+
+      @include media($breakMedium) {
+        justify-content: center;
       }
 
-      ul {
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;
-        padding: 0;
-        font-weight: bold;
+      .action {
+        @mixin action($actionWidth, $actionFontSize, $largeActionFontSize, $actionMargin, $smallActionHeight) {
+          min-width: $actionWidth;
+          margin: $actionMargin $actionMargin * 2 $actionMargin 0;
 
-        @include media($breakMedium) {
-          justify-content: center;
-        }
+          a {
+            @include centerChild;
+            @include transitions((
+                hoverTransition(background-color, $from: $actionColor, $to: $actionHoverColor),
+                hoverTransition(font-size, $from: $actionFontSize, $to: $largeActionFontSize),
+                hoverTransition(color, $to: $itemColor),
+                width $initDuration,
+                margin $initDuration,
+            ));
+            height: $smallActionHeight;
 
-        li {
-          @mixin item($itemSize, $fontSize, $largeFontSize, $itemMargin, $smallItemHeight, $boxShadow) {
-            min-width: $itemSize;
-            margin: $itemMargin;
+            span {
+              margin: 10px;
+              border-bottom: 2px solid $actionColor;
+            }
 
-            &:first-child { margin-left: 0; }
-            &:last-child { margin-right: 0; }
+            svg {
+              height: 20px;
+              margin: 10px 0 10px 10px;
 
-            a {
-              @include centerChild;
-              @include transitions((
-                  hoverTransition(background-color, $from: $subItemColor, $to: $subItemHoverColor),
-                  hoverTransition(font-size, $from: $fontSize, $to: $largeFontSize),
-                  hoverTransition(color, $to: $subItemColor),
-                  width $initDuration,
-                  margin $initDuration,
-              ));
-              height: $smallItemHeight;
+              .accent { transition: fill $hoverDuration; fill: $accColor; }
+            }
 
-              span {
-                margin: 10px;
-                border-bottom: 2px solid $subItemColor;
-              }
+            &:hover {
+              svg .accent { fill: $itemColor; }
             }
           }
+        }
 
-          $fontSize: 20px;
-          $largeFontSize: $fontSize * 1.2;
+        $largeActionFontSize: $actionFontSize * 1.2;
 
-          @include item($itemSize, $fontSize, $largeFontSize, $itemMargin, $smallItemHeight, 5px);
+        @include action($actionWidth, $actionFontSize, $largeActionFontSize, $actionMargin, $smallActionHeight);
 
-          @include media($breakMedium) {
-            @include item($itemSize * $smallItemFactor, $fontSize * $smallItemFactor,
-                $largeFontSize * $smallItemFactor, $itemMargin * $smallItemFactor, $smallItemHeight * $smallItemFactor, 3px);
-          }
+        @include media($breakMedium) {
+          @include action($actionWidth * $smallActionFactor, $actionFontSize * $smallActionFactor,
+              $largeActionFontSize * $smallActionFactor, $actionMargin * $smallActionFactor,
+              $smallActionHeight * $smallActionFactor);
         }
       }
     }
@@ -122,6 +128,7 @@
         &:hover img {
           border-color: $accColor;
           box-shadow: 0 0 0 3px $accColor;
+          filter: brightness(110%);
         }
       }
     }
