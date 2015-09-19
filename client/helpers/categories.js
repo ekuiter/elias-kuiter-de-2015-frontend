@@ -8,7 +8,7 @@ Template.categoriesView.helpers({
     return Categories.find({}, { sort: { order: 1 } });
   },
   size: function() {
-    if (App.helpers.isRoute("home"))
+    if (App.isRoute("home"))
       return "large";
     else {
       Template.instance().animatable.set(false);
@@ -19,6 +19,6 @@ Template.categoriesView.helpers({
     return Template.instance().animatable.get() ? "animatable" : "";
   },
   active: function() {
-    return App.helpers.getCategorySlug() === this.slug ? "active" : "";
+    return App.helpers.getCategorySlug() === this.slug && !Session.get("isNotFound") ? "active" : "";
   }
 });

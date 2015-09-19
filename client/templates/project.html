@@ -1,55 +1,55 @@
 <template name="projectRoute">
   <div class="project-container">
-    <div class="project">
+    <div class="project columns-1">
       <h2 class="show-on-small">{{title}}</h2>
-      <ul class="images columns-1">
-        <li>
-          <a href="http://elias-kuiter.de/assets/references/hcp1-en.png">
-            <img src="http://elias-kuiter.de/assets/references/hcp1-en.png" alt="{{title}}" />
-          </a>
-        </li>
-        <li>
-          <a href="http://elias-kuiter.de/assets/references/wilmering1-en.png">
-            <img src="http://elias-kuiter.de/assets/references/wilmering1-en.png" alt="{{title}}" />
-          </a>
-        </li>
-        <li>
-          <a href="http://elias-kuiter.de/assets/references/vplan1.png">
-            <img src="http://elias-kuiter.de/assets/references/vplan1.png" alt="{{title}}" />
-          </a>
-        </li>
+      <ul class="images">
+        {{#each images}}
+          <li class="{{active imageNumber}}">
+            <a href="{{projectPath imageNumber}}">
+              <img src="{{imageUrl}}" alt="{{../title}}" />
+            </a>
+          </li>
+        {{/each}}
       </ul>
       <h2 class="show-on-large">{{title}}</h2>
       <ul class="actions">
-        <li class="action"><a href="{{url}}" class="no-underline"><span>Webseite besuchen</span></a></li>
-        <li class="action">
-          <a href="{{url}}" class="no-underline">
-            {{> githubLogo}}
-            <span>Code ansehen</span>
-          </a>
-        </li>
+        {{#if hasImageNumber}}
+          <li class="action">
+            <a href="{{projectPath}}" class="no-underline">
+              <span>« Zurück</span>
+            </a>
+          </li>
+        {{else}}
+          {{#each actions}}
+            <li class="action">
+              <a href="{{url}}" class="no-underline">
+                <span>{{title}}</span>
+              </a>
+            </li>
+          {{/each}}
+          {{#if githubRepository}}
+            <li class="action">
+              <a href="https://github.com/{{githubRepository}}" class="no-underline">
+                {{> githubLogo}}
+                <span>Code ansehen</span>
+              </a>
+            </li>
+          {{/if}}
+        {{/if}}
       </ul>
-      <p>My website as of 2015, built with Meteor.</p>
-      <p>It is divided into 3 parts:</p>
-      <ul>
-        <li>the <a href="http://ekuiter-www.herokuapp.com">frontend</a></li>
-        <li>the <a href="http://ekuiter-admin.herokuapp.com">backend</a></li>
-        <li>and some code shared across front- and backend (<a href="https://atmospherejs.com/ekuiter/elias-kuiter-de-shared">ekuiter:elias-kuiter-de-shared</a>)</li>
-      </ul>
-      <h3><a id="Frontend_9"></a>Frontend</h3>
-      <p>The frontend is mainly hosted on Heroku (<a href="http://ekuiter-www.herokuapp.com">ekuiter-www.herokuapp.com</a>). A second installation on OpenShift exists
-        (<a href="http://www-ekuiter.rhcloud.com">http://www-ekuiter.rhcloud.com</a>) which is active at night, when the Heroku app needs to recharge.</p>
-      <p>To deploy on Heroku, run:</p>
-      <p>As for OpenShift:</p>
-      <p>Set the following environment variables:</p>
-      <p>Whenever the Heroku app is inactive, it uses ERROR_PAGE_URL to redirect the user to the OpenShift app (which is slower,
-        but does not idle).</p>
-      <p>The OpenShift redirects the user in the given <code>TIME_FRAME</code> back to Heroku. This ensures that the user always sticks to
-        Heroku when possible.</p>
-      <h3><a id="Backend_33"></a>Backend</h3>
-      <p>The backend is hosted on Heroku (<a href="http://ekuiter-admin.herokuapp.com">ekuiter-admin.herokuapp.com</a>). The database is a free MongoLab sandbox provided
-        by Heroku. To deploy, run:</p>
-      <p>When setting up, remember to set <code>MONGO_URL</code> and <code>ROOT_URL</code>:</p>
+      {{> yield "details"}}
     </div>
+  </div>
+</template>
+
+<template name="projectDescription">
+  {{{descriptionHtml}}}
+</template>
+
+<template name="projectImage">
+  <div class="image">
+    <a href="{{projectPath nextImageNumber}}">
+      <img src="{{imageUrl}}" alt="{{title}}">
+    </a>
   </div>
 </template>

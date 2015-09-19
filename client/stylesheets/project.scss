@@ -88,48 +88,65 @@
       list-style: none;
       padding: 0;
 
-      &.columns-1 {
-        width: 25%;
-        margin: 10px 20px 5px 5px;
-      }
-
-      &.columns-2 {
-        width: 50%;
-        margin: 10px 10px 5px 0;
-
-        li { width: 46%; }
-      }
-
-      &.columns-1, &.columns-2 {
-        @include media($breakMedium) {
-          float: none;
-          width: auto;
-          margin: 10px;
-
-          li { width: 30%; }
-        }
-
-        @include media($breakSmall) {
-          li { width: 46%; }
-        }
-      }
-
-      li a {
-        display: block;
-        width: 100%;
-        height: 100%;
-
-        img {
+      li {
+        a {
+          display: block;
           width: 100%;
-          transition: border-color $hoverDuration, box-shadow $hoverDuration;
-          border: 2px solid $itemColor;
+          height: 100%;
+
+          img {
+            width: 100%;
+            transition: border-color $hoverDuration, box-shadow $hoverDuration;
+            border: 2px solid $itemColor;
+          }
         }
 
-        &:hover img {
+        &.active img, a:hover img {
           border-color: $accColor;
           box-shadow: 0 0 0 3px $accColor;
           filter: brightness(110%);
         }
+      }
+    }
+
+    &.columns-1 .images {
+      width: 25%;
+      margin: 10px 20px 5px 5px;
+    }
+
+    &.columns-2 .images {
+      width: 50%;
+      margin: 10px 10px 5px 0;
+
+      li { width: 46%; }
+    }
+
+    &.columns-1 .images, &.columns-2 .images {
+      @include media($breakMedium) {
+        float: none;
+        width: auto;
+        margin: 10px;
+
+        li { width: 30%; }
+      }
+
+      @include media($breakSmall) {
+        li { width: 46%; }
+      }
+    }
+
+    .image {
+      img {
+        max-width: 70%;
+        @include media($breakMedium) { max-width: 100%; }
+      }
+    }
+
+    &.columns-2 .image {
+      img {
+        max-width: 48%;
+        @include media($breakLarge) { max-width: 100%; }
+        @include media($breakMedium) { max-width: 100%; }
       }
     }
   }

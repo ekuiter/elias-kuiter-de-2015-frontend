@@ -1,20 +1,22 @@
 <template name="categoryView">
   {{#if hasCategorySlug}}
-    {{> separator}}
-    {{#if Template.subscriptionsReady}}
-      <ul class="projects">
-        {{#each category.projects}}
-          <li class="item {{size}} {{active}}">
-            {{> project}}
-          </li>
-        {{/each}}
-      </ul>
-      {{#unless isCategoryRoute}}
-        {{> separator}}
-      {{/unless}}
-    {{else}}
-      {{> loading}}
-    {{/if}}
+    {{#unless isNotFound}}
+      {{> separator}}
+      {{#if Template.subscriptionsReady}}
+        <ul class="projects">
+          {{#each category.projects}}
+            <li class="item {{size}} {{active}}">
+              {{> project}}
+            </li>
+          {{/each}}
+        </ul>
+        {{#unless isCategoryRoute}}
+          {{> separator}}
+        {{/unless}}
+      {{else}}
+        {{> loading}}
+      {{/if}}
+    {{/unless}}
   {{/if}}
 </template>
 
