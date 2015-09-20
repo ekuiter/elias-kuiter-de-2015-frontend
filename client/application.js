@@ -40,3 +40,5 @@ Meteor.Spinner.options = {
   width: 2,
   color: "#aaa"
 };
+
+Meteor.subscribe("images");

@@ -8,8 +8,10 @@ Template.projectRoute.helpers({
     return this.twoColumnLayout ? "columns-2" : "columns-1";
   },
   images: function() {
-    return this.images.map(function(imageUrl, index) {
-      return { imageUrl: imageUrl, imageNumber: index + 1 };
+    var self = this;
+    return self.imageIds.map(function(imageId, index) {
+      var imageNumber = index + 1;
+      return { imageNumber: imageNumber, imageUrl: self.imageUrl(imageNumber, "medium") };
     });
   },
   active: function(imageNumber) {
@@ -23,14 +25,14 @@ Template.projectRoute.helpers({
 
 Template.projectImage.helpers({
   imageUrl: function() {
-    var imageUrl = this.images[App.helpers.getImageNumber() - 1];
-    if (!imageUrl)
+    var imageNumber = App.helpers.getImageNumber();
+    if (!this.imageIds[imageNumber - 1])
       App.renderNotFound();
-    return imageUrl;
+    return this.imageUrl(imageNumber, "large");
   },
   nextImageNumber: function() {
     var imageNumber = App.helpers.getImageNumber();
-    return imageNumber >= this.images.length ? 1 : imageNumber + 1;
+    return imageNumber >= this.imageIds.length ? 1 : imageNumber + 1;
   },
   projectPath: projectPath
 });
