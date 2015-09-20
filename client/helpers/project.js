@@ -4,6 +4,9 @@ function projectPath(imageNumber) {
 }
 
 Template.projectRoute.helpers({
+  columns: function() {
+    return this.twoColumnLayout ? "columns-2" : "columns-1";
+  },
   images: function() {
     return this.images.map(function(imageUrl, index) {
       return { imageUrl: imageUrl, imageNumber: index + 1 };

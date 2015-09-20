@@ -52,3 +52,9 @@ Template.categoryView.helpers({
     return App.helpers.getProjectSlug() === this.slug ? "active" : "";
   }
 });
+
+Template.project.helpers({
+  imageUrl: function() {
+    return this.images[0];
+  }
+});
