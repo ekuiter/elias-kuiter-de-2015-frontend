@@ -1,8 +1,10 @@
+FS.TempStore.Storage = new FS.Store.GridFSReadOnly("_tempstore", { internal: true });
+
 Images = new FS.Collection("images", {
   stores: [
-    new FS.Store.GridFS("small"),
-    new FS.Store.GridFS("medium"),
-    new FS.Store.GridFS("large")
+    new FS.Store.GridFSReadOnly("small"),
+    new FS.Store.GridFSReadOnly("medium"),
+    new FS.Store.GridFSReadOnly("large")
   ]
 });
 
@@ -12,11 +14,19 @@ Images.allow({
   }
 });
 
-Meteor.publish("image", function(imageId) {
-  check(imageId, String);
-  return Images.find({ _id: imageId });
+Meteor.publish("imagesForCategory", function(categorySlug) {
+  check(categorySlug, String);
+  var imageIds = Projects.find({ categorySlug: categorySlug }).map(function(project) {
+    return project.imageIds[0];
+  });
+  return Images.find({ _id: { $in: imageIds } });
 });
 
-Meteor.publish("images", function(imageId) {
-  return Images.find();
+Meteor.publish("imagesForProject", function(categorySlug, projectSlug) {
+  check(categorySlug, String);
+  check(projectSlug, String);
+  var project = Projects.findOne({ categorySlug: categorySlug, slug: projectSlug });
+  if (!project)
+    this.error(new Meteor.Error(404));
+  return Images.find({ _id: { $in: project.imageIds } });
 });

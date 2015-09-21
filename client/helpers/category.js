@@ -2,8 +2,10 @@ Template.categoryView.onCreated(function() {
   var self = this;
   self.autorun(function() {
     var categorySlug = App.helpers.getCategorySlug();
-    if (categorySlug)
+    if (categorySlug) {
       self.subscribe("projectsInCategory", categorySlug);
+      self.subscribe("imagesForCategory", categorySlug);
+    }
   });
   self.autorun(function() {
     if (self.subscriptionsReady() && App.helpers.getCategorySlug() && !App.helpers.getCategory())
@@ -21,7 +23,7 @@ Template.categoryView.onCreated(function() {
       if (self.subscriptionsReady()) {
         self.timeout = Meteor.setTimeout(function() {
           self.$(".projects .item img").addClass("visible");
-        }, App.initDuration);
+        }, App.initDuration * 2/3);
       }
     } else if (self.view._domrange)
       self.$(".projects .item img").removeClass("visible");

@@ -13,3 +13,4 @@ waitingkuo:normalize
 reactive-var
 sacha:spin
 meteorhacks:fast-render
+ekuiter:gridfs-read-only
