@@ -76,4 +76,4 @@ When disabled, Heroku will redirect to OpenShift.
 
 ### More
 
-Make sure elias-kuiter.de/redirect.html and elias-kuiter.de/i/favicon.ico exist. 
+Make sure `elias-kuiter.de/redirect.html`, `scale.php`, `/i/favicon.ico` and `/i/empty.gif` exist. 

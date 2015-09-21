@@ -23,7 +23,7 @@ Template.categoryView.onCreated(function() {
       if (self.subscriptionsReady()) {
         self.timeout = Meteor.setTimeout(function() {
           self.$(".projects .item img").addClass("visible");
-        }, App.initDuration * 2/3);
+        }, App.initDuration);
       }
     } else if (self.view._domrange)
       self.$(".projects .item img").removeClass("visible");
