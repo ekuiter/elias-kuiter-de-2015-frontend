@@ -2,7 +2,7 @@
 @import "mixins";
 
 header {
-  margin-top: 20px;
+  padding-top: 20px;
 
   .heading {
     @include centerChild;

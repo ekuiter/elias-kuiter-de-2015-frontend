@@ -30,7 +30,7 @@ main {
   }
 
   .big {
-    font-size: 1.4em;
+    font-size: 1.3em;
   }
 
   .project-container .project.meta {
@@ -44,19 +44,6 @@ main {
       font-size: 4em;
       margin: 20px;
     }
-  }
-}
-
-footer {
-  @include inCorner(bottom right, 7px);
-  padding: 8px;
-  background-color: $bgColor;
-  border-radius: 8px;
-
-  @include media($breakMedium) {
-    position: static;
-    text-align: right;
-    margin: 10px;
   }
 }
 

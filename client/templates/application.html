@@ -6,34 +6,40 @@
 </head>
 
 <template name="applicationLayout">
-  <header>
-    <div class="heading">
-      <a href="/" class="no-underline">
-        {{> logo}}
-        <h1>Elias Kuiter</h1>
-      </a>
-    </div>
+  <div class="wrapper">
+    <header>
+      <div class="heading">
+        <a href="/" class="no-underline">
+          {{> logo}}
+          <h1>Elias Kuiter</h1>
+        </a>
+      </div>
 
-    <div class="tagline">
-      Hallo, ich bin ein Web- und App-Entwickler. Dies sind einige meiner Projekte.
-    </div>
+      <div class="tagline">
+        Hallo, ich bin ein Web- und App-Entwickler. Dies sind einige meiner Projekte.
+      </div>
 
-    <a class="admin" href="http://admin.elias-kuiter.de" target="_blank">π</a>
-  </header>
+      <a class="admin" href="http://admin.elias-kuiter.de" target="_blank">π</a>
+    </header>
 
-  <nav>
-    {{> categoriesView}}
-    {{> categoryView}}
-  </nav>
+    <nav>
+      {{> categoriesView}}
+      {{> categoryView}}
+    </nav>
 
-  <main>
-    {{> yield}}
-  </main>
+    <main>
+      {{> yield}}
+    </main>
+
+    <div class="push"></div>
+  </div>
 
   <footer>
-    &copy; {{year}} Elias Kuiter |
-    <a href="/datenschutz">Datenschutz</a> |
-    <a href="/impressum">Impressum</a>
+    <div>
+      &copy; {{year}} Elias Kuiter |
+      <a href="/datenschutz">Datenschutz</a> |
+      <a href="/impressum">Impressum</a>
+    </div>
   </footer>
 </template>
 

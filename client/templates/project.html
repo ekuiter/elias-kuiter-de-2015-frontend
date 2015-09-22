@@ -1,7 +1,7 @@
 <template name="projectRoute">
   <div class="project-container">
     <div class="project {{columns}}">
-      <h2 class="show-on-small">{{title}}</h2>
+      <h2 class="show-on-small">{{longOrShortTitle}}</h2>
       <ul class="images">
         {{#each images}}
           <li class="{{active imageNumber}}">
@@ -11,7 +11,7 @@
           </li>
         {{/each}}
       </ul>
-      <h2 class="show-on-large">{{title}}</h2>
+      <h2 class="show-on-large">{{longOrShortTitle}}</h2>
       <ul class="actions">
         {{#if hasImageNumber}}
           <li class="action">
