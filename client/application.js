@@ -1,6 +1,6 @@
 App = {
   initDuration: 300,
-  notFoundTitle: "Nicht gefunden",
+  notFoundTitle: "Seite nicht gefunden",
   isRoute: function(routeName) {
     return Router.current().route.getName() === routeName;
   },

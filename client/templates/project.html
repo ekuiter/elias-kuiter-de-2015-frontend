@@ -22,14 +22,14 @@
         {{else}}
           {{#each actions}}
             <li class="action">
-              <a href="{{url}}" class="no-underline">
+              <a href="{{url}}" class="no-underline" target="_blank">
                 <span>{{title}}</span>
               </a>
             </li>
           {{/each}}
           {{#if githubRepository}}
             <li class="action">
-              <a href="https://github.com/{{githubRepository}}" class="no-underline">
+              <a href="https://github.com/{{githubRepository}}" class="no-underline" target="_blank">
                 {{> githubLogo}}
                 <span>Code ansehen</span>
               </a>
