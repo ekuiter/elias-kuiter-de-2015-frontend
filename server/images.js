@@ -27,6 +27,6 @@ Meteor.publish("imagesForProject", function(categorySlug, projectSlug) {
   check(projectSlug, String);
   var project = Projects.findOne({ categorySlug: categorySlug, slug: projectSlug });
   if (!project)
-    this.error(new Meteor.Error(404));
+    return this.ready();
   return Images.find({ _id: { $in: project.imageIds } });
 });
