@@ -20,7 +20,7 @@
             {{> action title=title url=url target="_blank"}}
           {{/each}}
           {{#if githubRepository}}
-            {{> githubAction}}
+            {{> githubAction title="Code ansehen"}}
           {{/if}}
         {{/if}}
       </ul>
@@ -41,7 +41,7 @@
   <li class="action">
     <a href="https://github.com/{{githubRepository}}" class="no-underline" target="_blank">
       {{> githubLogo}}
-      <span>Code ansehen</span>
+      <span>{{title}}</span>
     </a>
   </li>
 </template>

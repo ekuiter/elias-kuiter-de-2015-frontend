@@ -41,9 +41,10 @@ Template.projectDescription.helpers({
           return Blaze.toHTMLWithData(Template.action, {
             title: options[1], url: "http://" + options[2].replace("_DOT_", "."), target: "_blank"
           });
-        } else if (options[0] === "githubAction")
-          return Blaze.toHTMLWithData(Template.githubAction, { githubRepository: options[1] });
-        else
+        } else if (options[0] === "githubAction") {
+          var title = options[2] || "Code ansehen";
+          return Blaze.toHTMLWithData(Template.githubAction, { githubRepository: options[1], title: title });
+        } else
           return "";
       }
 
