@@ -14,32 +14,36 @@
       <h2 class="show-on-large">{{longOrShortTitle}}</h2>
       <ul class="actions">
         {{#if hasImageNumber}}
-          <li class="action">
-            <a href="{{projectPath}}" class="no-underline">
-              <span>« Zurück</span>
-            </a>
-          </li>
+          {{> action url=projectPath title="« Zurück"}}
         {{else}}
           {{#each actions}}
-            <li class="action">
-              <a href="{{url}}" class="no-underline" target="_blank">
-                <span>{{title}}</span>
-              </a>
-            </li>
+            {{> action title=title url=url target="_blank"}}
           {{/each}}
           {{#if githubRepository}}
-            <li class="action">
-              <a href="https://github.com/{{githubRepository}}" class="no-underline" target="_blank">
-                {{> githubLogo}}
-                <span>Code ansehen</span>
-              </a>
-            </li>
+            {{> githubAction}}
           {{/if}}
         {{/if}}
       </ul>
       {{> yield "details"}}
     </div>
   </div>
+</template>
+
+<template name="action">
+  <li class="action">
+    <a href="{{url}}" class="no-underline" target={{target}}>
+      <span>{{title}}</span>
+    </a>
+  </li>
+</template>
+
+<template name="githubAction">
+  <li class="action">
+    <a href="https://github.com/{{githubRepository}}" class="no-underline" target="_blank">
+      {{> githubLogo}}
+      <span>Code ansehen</span>
+    </a>
+  </li>
 </template>
 
 <template name="projectDescription">
