@@ -22,10 +22,14 @@ nav .categories {
         left: 20%;
         width: 60%;
         text-align: center;
-        line-height: 1.5em;
-        font-size: $itemFontSize;
+        line-height: 1.5;
         transition: opacity $initDuration * 0.5;
+        font-size: $itemFontSize;
         opacity: 0;
+
+        @include media($breakMedium) {
+          font-size: $itemFontSize * $smallItemFactor;
+        }
       }
     }
 
@@ -38,7 +42,7 @@ nav .categories {
         @include circle(100%);
 
         .subtitle {
-          transition: opacity $initDuration;
+          transition: font-size $initDuration, opacity $initDuration;
           opacity: 1;
         }
       }
