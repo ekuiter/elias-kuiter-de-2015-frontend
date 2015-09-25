@@ -25,7 +25,7 @@ Template.projectRoute.helpers({
 
 Template.projectDescription.helpers({
   descriptionHtml: function() {
-    function parse(html) {
+    function parseWidgets(html) {
       var startTag = "{{", endTag = "}}";
 
       function tagIndex(html) {
@@ -54,9 +54,18 @@ Template.projectDescription.helpers({
       var after = html.substring(tag.end + endTag.length);
       var between = html.substring(tag.start + startTag.length, tag.end);
       var options = JSON.parse(between.replace(/&quot;/g, "\""));
-      return before + renderWidget(options) + parse(after);
+      return before + renderWidget(options) + parseWidgets(after);
     }
-    return parse(this.descriptionHtml);
+
+    function parseLinks(html) {
+      var match = html.match(/<a href="(.*?)">(.*?)<\/a>/);
+      if (!match) return html;
+      var parts = html.split(match[0]), before = parts[0], after = parts[1], url = match[1], title = match[2];
+      var link = url.indexOf("://") === -1 ? '<a href="' + url : '<a href="' + url + '" target="_blank';
+      return before + link + '">' + title + '</a>' + parseLinks(after);
+    }
+
+    return parseLinks(parseWidgets(this.descriptionHtml));
   }
 });
 
