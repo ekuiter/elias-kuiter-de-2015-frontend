@@ -20,7 +20,7 @@
             {{> action title=title url=url target="_blank"}}
           {{/each}}
           {{#if githubRepository}}
-            {{> githubAction title="Code ansehen"}}
+            {{> githubAction githubRepository=githubRepository title="Code ansehen"}}
           {{/if}}
         {{/if}}
       </ul>
