@@ -6,6 +6,16 @@ body {
   background-color: $bgColor;
   color: $fgColor;
   font-family: "Trebuchet MS", sans-serif;
+
+  &:not(.has-script) {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 20px;
+
+    &::before {
+      content: "Schalten Sie bitte JavaScript ein, um diese Website zu benutzen - es tut gar nicht weh!";
+    }
+  }
 }
 
 main {
