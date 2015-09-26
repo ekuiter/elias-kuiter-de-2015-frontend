@@ -22,10 +22,9 @@ Meteor.startup(function() {
   }
 
   WebApp.connectHandlers.use(function(req, res, next) {
-    var linkSlug = req.url.slice(1);
-    var link = Links.findOne({ slug: linkSlug });
+    var link = Links.findOne({ slug: req.url });
     if (link)
-      redirect(res, link.url, "requested: " + linkSlug);
+      redirect(res, link.url, "requested: " + link.slug);
     else
       next();
   });
