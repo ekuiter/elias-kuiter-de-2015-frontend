@@ -1,5 +1,12 @@
+function redirect(res, url, details) {
+  console.log("Redirecting to " + url + (details ? ", " + details : ""));
+  res.writeHead(302, { Location: url });
+  res.end();
+}
+
 Meteor.startup(function() {
   var redirectUrl = process.env.REDIRECT_URL, timeFrame = process.env.TIME_FRAME;
+
   if (redirectUrl && timeFrame) {
     var hours = timeFrame.split("-");
     var startHour = parseInt(hours[0]);
@@ -7,12 +14,19 @@ Meteor.startup(function() {
 
     WebApp.connectHandlers.use(function(req, res, next) {
       var currentHour = Timezone.getHour();
-      if (currentHour >= startHour && currentHour <= endHour) {
-        console.log("Redirecting to " + redirectUrl + ", currentHour (" + currentHour + ") is in TIME_FRAME=" + timeFrame);
-        res.writeHead(302, { Location: redirectUrl + req.url });
-        res.end();
-      } else
+      if (currentHour >= startHour && currentHour <= endHour)
+        redirect(res, redirectUrl + req.url, "currentHour (" + currentHour + ") is in TIME_FRAME=" + timeFrame);
+      else
         next();
     });
   }
+
+  WebApp.connectHandlers.use(function(req, res, next) {
+    var linkSlug = req.url.slice(1);
+    var link = Links.findOne({ slug: linkSlug });
+    if (link)
+      redirect(res, link.url, "requested: " + linkSlug);
+    else
+      next();
+  });
 });
