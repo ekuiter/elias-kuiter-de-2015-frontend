@@ -39,7 +39,11 @@ Template.projectDescription.helpers({
       function renderWidget(options) {
         if (options[0] === "action") {
           return Blaze.toHTMLWithData(Template.action, {
-            title: options[1], url: "http://" + options[2].replace("_DOT_", "."), target: "_blank"
+            title: options[1],
+            url: "http://" + options[2].
+              replace("_DOT_", ".").
+              replace("ROOT_URL", __meteor_runtime_config__.ROOT_URL.slice(0, -1).replace("http://", "")),
+            target: "_blank"
           });
         } else if (options[0] === "githubAction") {
           var title = options[2] || "Code ansehen";
@@ -60,8 +64,8 @@ Template.projectDescription.helpers({
     function parseLinks(html) {
       var match = html.match(/<a href="(.*?)">(.*?)<\/a>/);
       if (!match) return html;
-      var parts = html.split(match[0]), before = parts.splice(0, 1)[0],
-        after = parts.join(match[0]), url = match[1], title = match[2];
+      var parts = html.split(match[0]), before = parts.splice(0, 1)[0], after = parts.join(match[0]),
+        url = match[1].replace("ROOT_URL", __meteor_runtime_config__.ROOT_URL.slice(0, -1)), title = match[2];
       var link = url.indexOf("://") === -1 ? '<a href="' + url : '<a href="' + url + '" target="_blank';
       return before + link + '">' + title + '</a>' + parseLinks(after);
     }
