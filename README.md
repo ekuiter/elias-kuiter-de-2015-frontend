@@ -3,14 +3,14 @@
 My website as of 2015, built with Meteor.
 
 It is divided into 3 parts:
-- the [frontend](http://ekuiter-www.herokuapp.com)
-- the [backend](http://ekuiter-admin.herokuapp.com)
+- the [frontend](http://www.elias-kuiter.de)
+- the [backend](http://admin.elias-kuiter.de)
 - and some code shared across front- and backend ([ekuiter:elias-kuiter-de-shared](https://atmospherejs.com/ekuiter/elias-kuiter-de-shared))
 
 ## Frontend
 
-The frontend is mainly hosted on Heroku (ekuiter-www.herokuapp.com). A second installation on OpenShift exists
-(http://www-ekuiter.rhcloud.com) which is active at night, when the Heroku app needs to recharge.
+The frontend is mainly hosted on Heroku (www.elias-kuiter.de). A second installation on OpenShift exists
+(www2.elias-kuiter.de) which is active at night, when the Heroku app needs to recharge.
 
 To deploy on Heroku, run:
 
@@ -23,27 +23,29 @@ As for OpenShift:
 
 Set the following environment variables:
 
-    heroku config:set MONGO_URL=... ROOT_URL=http://ekuiter-www.herokuapp.com/ ERROR_PAGE_URL=http://elias-kuiter.de/redirect.html
-    rhc env set MONGODB_URL=... REDIRECT_URL=http://ekuiter-www.herokuapp.com TIME_FRAME=6-23 --app www
+    heroku config:set MONGO_URL=... ROOT_URL=http://www.elias-kuiter.de/ ERROR_PAGE_URL=http://elias-kuiter.de/redirect.html
+    rhc env set MONGODB_URL=... ROOT_URL=http://www2.elias-kuiter.de/ REDIRECT_URL=http://www.elias-kuiter.de TIME_FRAME=6-23 --app www
+    
+(Note the (lack of) trailing slashes!)
 
 Whenever the Heroku app is inactive, it uses ERROR_PAGE_URL to redirect the user to the OpenShift app (which is slower,
 but does not idle).
 
-The OpenShift redirects the user in the given `TIME_FRAME` back to Heroku. This ensures that the user always sticks to
-Heroku when possible.
+The OpenShift app redirects the user in the given `TIME_FRAME` back to Heroku. This ensures that the user always sticks to
+Heroku when possible. (When accessing `http://elias-kuiter.de` directly, PHP redirects to the `www` subdomain as well.)
 
 ## Backend
 
-The backend is hosted on Heroku (ekuiter-admin.herokuapp.com). The database is a free MongoLab sandbox provided
+The backend is hosted on Heroku (admin.elias-kuiter.de). The database is a free MongoLab sandbox provided
 by Heroku. To deploy, run:
 
     git push heroku master
     
 When setting up, remember to set `MONGO_URL` and `ROOT_URL`:
 
-    heroku config:set MONGO_URL=... ROOT_URL=http://ekuiter-admin.herokuapp.com/
+    heroku config:set MONGO_URL=... ROOT_URL=http://admin.elias-kuiter.de/
 
-Follow the instructions on ekuiter-admin.herokuapp.com to configure GitHub OAuth. Login is restricted to my
+Follow the instructions on admin.elias-kuiter.de to configure GitHub OAuth. Login is restricted to my
 email address. Remember to set the `admin` role after first logging in - open www.mongolab.com/databases >
 edit user > insert this:
  
@@ -58,14 +60,14 @@ edit user > insert this:
 
 ### Heroku idling
 
-Create two cronjobs that keep Heroku from idling, pointing to ekuiter-www.herokuapp.com and ekuiter-admin.herokuapp.com
+Create two cronjobs that keep Heroku from idling, pointing to www.elias-kuiter.de and admin.elias-kuiter.de
 (every 30 minutes).
 
 I use [kasapi-auto-cronjobs](https://github.com/ekuiter/kasapi-auto-cronjobs) to deactivate these cronjobs at night:
 
     $additionalCronjobs = array(
-      array(6, 24, array('cronjob_comment' => 'wakeup', 'http_url' => 'ekuiter-www.herokuapp.com')),
-      array(9, 22, array('cronjob_comment' => 'wakeup', 'http_url' => 'ekuiter-admin.herokuapp.com')),
+      array(6, 24, array('cronjob_comment' => 'wakeup', 'http_url' => 'www.elias-kuiter.de')),
+      array(9, 22, array('cronjob_comment' => 'wakeup', 'http_url' => 'admin.elias-kuiter.de')),
     );
     
 ### Disable Heroku
@@ -76,4 +78,12 @@ When disabled, Heroku will redirect to OpenShift.
 
 ### More
 
-Make sure `elias-kuiter.de/redirect.html`, `scale.php`, `/i/favicon.ico` and `/i/empty.gif` exist. 
+Make sure these files exist on `http://elias-kuiter.de`:
+
+    .htaccess
+    index.php
+    redirect.html
+    scale.php
+    i/empty.gif
+    i/favicon.ico
+    i/ich.jpg
