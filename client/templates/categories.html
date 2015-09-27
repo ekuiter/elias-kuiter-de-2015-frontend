@@ -6,6 +6,11 @@
           {{> category}}
         </li>
       {{/each}}
+      {{#each additionalItems}}
+        <li class="item {{size}} {{animatable}} {{active}}">
+          {{> category}}
+        </li>
+      {{/each}}
     </ul>
   {{/if}}
 </template>
