@@ -34,6 +34,10 @@ nav .projects {
           height: 65%;
         }
       }
+
+      h2 {
+        margin: 10px 10px 3px 10px;
+      }
     }
 
     &.small {
@@ -44,6 +48,10 @@ nav .projects {
           height: 0;
           margin: 0;
           border-width: 0;
+        }
+
+        h2 {
+          margin: 10px;
         }
       }
     }
