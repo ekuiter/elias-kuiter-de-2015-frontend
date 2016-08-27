@@ -95,6 +95,10 @@ a {
   height: 50px;
 }
 
+.fade-in {
+  @include fadeInAnimation($initDuration);
+}
+
 .show-on-large {
   @include media($breakMedium) { display: none; }
 }
