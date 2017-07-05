@@ -107,3 +107,38 @@ a {
   display: none;
   @include media($breakMedium) { display: block; }
 }
+
+.footer-actions .action {
+    min-width: $smallItemHeight !important;
+    $largeActionFontSize: $actionFontSize * 1.2;
+
+    @include action($actionWidth, $actionFontSize, $largeActionFontSize, $actionMargin, $smallActionHeight);
+
+    @include media($breakMedium) {
+	min-width: $smallItemHeight * $smallItemFactor !important;
+        @include action($actionWidth * $smallActionFactor, $actionFontSize * $smallActionFactor,
+			$largeActionFontSize * $smallActionFactor, $actionMargin * $smallActionFactor,
+			$smallActionHeight * $smallActionFactor);
+    }
+
+    $svgHeight: $smallItemHeight * 0.6;
+    $svgHoverHeight: $smallItemHeight * 0.72;
+
+    a svg {
+	transition: height $hoverDuration;
+	height: $svgHeight;
+	margin: 5px;
+	@include media($breakMedium) {
+	    height: $svgHeight * $smallItemFactor;
+	}
+    }
+
+    &:hover {
+	a svg {
+	    height: $svgHoverHeight;
+	    @include media($breakMedium) {
+		height: $svgHoverHeight * $smallItemFactor;
+	    }
+	}
+    }
+}

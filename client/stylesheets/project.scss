@@ -33,39 +33,6 @@
       }
 
       .action {
-        @mixin action($actionWidth, $actionFontSize, $largeActionFontSize, $actionMargin, $smallActionHeight) {
-          min-width: $actionWidth;
-          margin: $actionMargin $actionMargin * 2 $actionMargin 0;
-
-          a {
-            @include centerChild;
-            @include transitions((
-                hoverTransition(background-color, $from: $actionColor, $to: $actionHoverColor),
-                hoverTransition(font-size, $from: $actionFontSize, $to: $largeActionFontSize),
-                hoverTransition(color, $to: $itemColor),
-                width $initDuration,
-                margin $initDuration,
-            ));
-            height: $smallActionHeight;
-
-            span {
-              margin: 10px;
-              border-bottom: 2px solid $actionColor;
-            }
-
-            svg {
-              height: 20px;
-              margin: 10px 0 10px 10px;
-
-              .accent { transition: fill $hoverDuration; fill: $accColor; }
-            }
-
-            &:hover {
-              svg .accent { fill: $itemColor; }
-            }
-          }
-        }
-
         $largeActionFontSize: $actionFontSize * 1.2;
 
         @include action($actionWidth, $actionFontSize, $largeActionFontSize, $actionMargin, $smallActionHeight);
