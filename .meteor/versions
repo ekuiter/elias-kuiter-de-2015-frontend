@@ -47,6 +47,8 @@ ejson@1.0.7
 ekuiter:elias-kuiter-de-shared@0.60.0
 ekuiter:gridfs-read-only@0.0.33
 fourseven:scss@3.2.0
+gadicohen:robots-txt@0.0.10
+gadicohen:sitemaps@0.0.26
 geojson-utils@1.0.4
 hot-code-push@1.0.0
 html-tools@1.0.5
