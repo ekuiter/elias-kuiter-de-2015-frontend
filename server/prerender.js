@@ -6,6 +6,9 @@ Meteor.startup(function() {
         prerenderio.set('prerenderToken', token);
         prerenderio.set('host', host);
         prerenderio.set('protocol', 'http');
+        prerenderio.crawlerUserAgents.push('googlebot');
+        prerenderio.crawlerUserAgents.push('bingbot');
+        prerenderio.crawlerUserAgents.push('yandex');
         WebApp.rawConnectHandlers.use(prerenderio);
     }
 });
