@@ -2,6 +2,8 @@
 
 My website as of 2015, built with Meteor.
 
+**Superseded by [ekuiter/elias-kuiter-de-2019](https://github.com/ekuiter/elias-kuiter-de-2019).**
+
 It is divided into 3 parts:
 - the [frontend](http://www.elias-kuiter.de) ([repository](https://github.com/ekuiter/elias-kuiter-de-frontend))
 - the [backend](http://admin.elias-kuiter.de) ([repository](https://github.com/ekuiter/elias-kuiter-de-backend))

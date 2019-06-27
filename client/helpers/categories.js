@@ -1,6 +1,4 @@
-var additionalItems = [
-  { title: "Über mich", slug: "ueber-mich" }
-];
+var additionalItems = [];
 
 Template.categoriesView.onCreated(function() {
   this.subscribe("categories");

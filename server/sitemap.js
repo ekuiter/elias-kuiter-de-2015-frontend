@@ -2,7 +2,6 @@ Meteor.startup(function() {
     sitemaps.add('/sitemap.xml', function() {
         return [
             { page: "/" },
-            { page: "/ueber-mich" },
             { page: "/impressum" },
             { page: "/datenschutz" }
         ].
